@@ -45,7 +45,7 @@ SIMPLE
     residualControl
     {
         p       5e-5;
-        U       1e-5;
+        U       2e-5;
         epsilon 1e-5;
         R       1e-5;
     }
@@ -59,7 +59,7 @@ relaxationFactors
     }
     equations
     {
-        U       0.8;
+        U       0.85;  // Reasonable with p=0.7, U=0.85
         k       0.9;
         R       0.9;
         epsilon 0.9;
