@@ -1,0 +1,3 @@
+cat surfaceFieldValue.dat | sed 's/(//g' | sed 's/)//g' > b.dat
+
+mpirun -np 4 foamRun -parallel > log &

@@ -44,7 +44,7 @@ SIMPLE
 
     residualControl
     {
-        p       5e-5;
+        p       1e-5;
         U       2e-5;
         epsilon 1e-5;
         R       1e-5;

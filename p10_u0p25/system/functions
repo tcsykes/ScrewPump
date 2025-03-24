@@ -1,0 +1,84 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      functions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+probes
+{
+    // Where to load it from
+    libs            ("libsampling.so");
+
+    type            probes;
+
+    // Name of the directory for probe data
+    name            probes;
+
+    // Write at same frequency as fields
+    writeControl    timeStep;
+    writeInterval   1;
+
+    // Fields to be probed
+    fields
+    (
+        U
+    );
+
+    probeLocations
+    (
+        (5e-4 5e-4 0)        // at inlet
+        (5e-4 5e-4 1e-2)     // at outlet
+    );
+}
+
+outletFlowRate
+{
+	// Basics
+	type	surfaceFieldValue;
+	libs	("libfieldFunctionObjects.so");
+
+	// Operation
+	fields		(U);
+	operation	areaIntegrate;
+	regionType	patch;
+	name		outlet;
+	surfaceFormat	none;
+
+	// Output
+	writeFields	true;
+	log		true;
+	writeToFile	true;
+	writeControl	timeStep;
+}
+
+inletFlowRate
+{
+	// Basics
+	type	surfaceFieldValue;
+	libs	("libfieldFunctionObjects.so");
+
+	// Operation
+	fields		(U);
+	operation	areaIntegrate;
+	regionType	patch;
+	name		inlet;
+	surfaceFormat	none;
+
+	// Output
+	writeFields	true;
+	log		true;
+	writeToFile	true;
+	writeControl	timeStep;
+}
+
+// ************************************************************************* //
